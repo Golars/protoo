@@ -118,7 +118,7 @@ class WebSocketServer extends EnhancedEventEmitter
 					return transport;
 				},
 				// reject() function.
-				(code, reason) =>
+				(code, reason, extraHeaders) =>
 				{
 					if (replied)
 					{
@@ -145,7 +145,7 @@ class WebSocketServer extends EnhancedEventEmitter
 					logger.debug(
 						'_onRequest() | reject() called [code:%s | reason:"%s"]', code, reason);
 
-					request.reject(code, reason);
+					request.reject(code, reason, extraHeaders);
 				});
 		}
 		catch (error)
